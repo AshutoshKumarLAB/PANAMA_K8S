@@ -17,7 +17,7 @@ kubectl apply -f yamlfile
 
 # Check the environment variables inside the running pod named "env-demo"
 # Filter only those containing COLOR, MODE, or DB
-kubectl exec -it env-demo -- env | grep -E 'COLOR|MODE|DB'
+kubectl exec -it <podname> -- env | grep -E 'COLOR|MODE|DB'
 
 #Update configmap and Secret
 kubectl create configmap my-config --from-literal=APP_COLOR=red --from-literal=APP_MODE=staging -o yaml --dry-run=client | kubectl apply -f -
