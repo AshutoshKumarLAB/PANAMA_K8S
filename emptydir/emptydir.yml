@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: emptydir-pod
+
+spec:
+  containers:
+  - name: app
+    image: busybox
+    command:
+      - sh
+      - -c
+      - |
+        while true
+        do
+          echo "Hello from EmptyDir" >> /data/test.txt
+          cat /data/test.txt
+          sleep 10
+        done
+
+    volumeMounts:
+    - name: temp-storage
+      mountPath: /data
+
+  volumes:
+  - name: temp-storage
+    emptyDir: {}
